@@ -1,0 +1,142 @@
+*pieceWidth:	24
+*pieceHeight:	24
+
+*boardWidth:	6
+*boardHeight:	12
+*period:	20
+
+*toplevel.translations:	#override <Unmap>:Pause()
+
+*Font:		-*-helvetica-bold-r-*-*-*-120-*-*-*-*-*-*
+*Background:	black
+*Foreground:	white
+
+*BorderColor:		white
+*Label.BorderColor:	black
+*Form.BorderColor:	black
+*Box.BorderColor:	black
+
+
+*board.resize:		False
+
+*Text.translations:#override\n\
+	<Enter>:	display-caret(True) \n\
+	<Leave>:	display-caret(False) \n\
+	<Key>Return:	no-op() \n
+
+*player2.fromHoriz:	player1
+*buttons.fromVert:	player1
+
+*buttons.orientation:		horizontal
+*buttons.Command.width:		100
+*buttons.MenuButton.width:	100
+*buttons.Command.resize:	False
+*buttons.start.label:		Start
+*buttons.start.accelerators:	<Key>s: set() notify() unset() \n\
+				<Key>p: set() notify() unset() \n
+*buttons.connect.label:		Connect
+!*buttons.connect.accelerators:	<KeyDown>c: set() \n\
+!				<KeyUp>c: notify() \n
+*buttons.host.label:		Host
+*buttons.quit.label:		Quit
+*buttons.quit.accelerators:	<KeyDown>q: set() \n\
+				<KeyUp>q: notify() \n
+
+*hostPopup.title:			Host Select
+*hostDialog.label.label:		Host Name:
+*hostDialog.hostText.fromHoriz:		label
+*hostDialog.hostText*editType:		edit
+*hostDialog.Command.width:		100
+*hostDialog.ok.label:			Ok
+*hostDialog.ok.fromVert:		label
+*hostDialog.ok.accelerators:		<Key>Return: set() notify() unset()
+*hostDialog.cancel.label:		Cancel
+*hostDialog.cancel.fromHoriz:		ok
+*hostDialog.cancel.fromVert:		label
+
+*conerrPopup.title:			error
+*conerrDialog.label:			connection closed
+*conerrDialog.conerrDialogOk.label:	Ok
+
+*levelMenu.title:			level
+*levelMenu*item0.label:			Very Easy
+*levelMenu*item1.label:			Easy
+*levelMenu*item2.label:			Normal
+*levelMenu*item3.label:			Hard
+*levelMenu*item4.label:			Very Hard
+*levelMenu*Command.width:		100
+*levelMenu*levelMenuBox.hSpace:		0
+*levelMenu*levelMenuBox.vSpace:		0
+
+*player1.board.fromVert:	announce
+*player1.next.fromHoriz:	announce
+*player1.status.fromVert:	next
+*player1.status.fromHoriz:	board
+
+*player2.board.fromVert:	announce
+*player2.next.fromHoriz:	announce
+*player2.status.fromHoriz:	board
+*player2.status.fromVert:	next
+
+!*player2.announce.fromHoriz:	next
+!*player2.board.fromHoriz:	next
+!*player2.board.fromVert:	announce
+!!*player2.next.fromHoriz:	announce
+!*player2.status.fromVert:	next
+
+
+*status.scLabel.width:		50
+*status.lvLabel.width:		50
+
+*status.scLabel.label:		Score:
+*status.scLabel.justify:	left
+*status.lvLabel.label:		Level:
+*status.lvLabel.justify:	left
+*status.lvLabel.fromVert:	scLabel
+
+*status.score.width:		70
+*status.level.width:		70
+
+*status.score.justify:		right
+*status.score.label:		0
+*status.score.fromHoriz:	scLabel
+*status.level.justify:		right
+*status.level.label:		Very Easy
+*status.level.fromHoriz:	lvLabel
+*status.level.fromVert:		scLabel
+
+*player1.BorderColor:		white
+*player2.BorderColor:		white
+
+
+
+*next.width:		96
+*next.height:		96
+
+*player1*translations:	#override \
+	<Expose>:Refresh()
+*player2*translations:	#override \
+	<Expose>:Refresh()
+
+*top.accelerators:	 \
+	<KeyDown>space:DropStart() \n\
+	<KeyUp>space:DropFinish() \n\
+	<Key>Left:MoveLeft() \n\
+	<Key>h:MoveLeft() \n\
+	<Key>Down:RotateRight() \n\
+	<Key>Begin:RotateRight() \n\
+	<Key>j:RotateLeft() \n\
+	<Key>k:RotateRight() \n\
+	<Key>Up:RotateLeft() \n\
+	<Key>l:MoveRight() \n\
+	<Key>Right:MoveRight()
+
+*puyo1.foreground:	red
+*puyo2.foreground:	blue
+*puyo3.foreground:	green
+*puyo4.foreground:	yellow
+*puyo5.foreground:	violet
+*obstaclePuyo.foreground:	white
+
+*Puyo.background:	black
+

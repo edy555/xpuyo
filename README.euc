@@ -1,0 +1,101 @@
+xpuyo version 0.0 (21/Sep/1993)
+	takahasi@huee.hokudai.ac.jp (Una TAKAHASHI)
+
+  X 版 落ちものゲームです。
+  今のところ人間同士の対戦しかできません。
+  別々の console で network を通して対戦します。
+
+Requested systems
+
+  GCC, X11R4以降
+
+  ss2, news, omron luna88k(ちょっと改造）で動作しました。
+  EWS-4800(NEC)で動かしているという report ももらっています。
+
+Compile
+
+  ANSI C で記述してあるので、compiler は default で gcc にしてあります。
+
+  xmkmf
+  make depend
+  make
+
+  とすると compile されます。いくらか warning が出ますが無視して下さい。
+
+  make install
+
+  で install されます。
+  application defaults file がないと動作しないので、install せずに動かす
+  場合には、Xpuyo.ad という file を、~/Xpuyo に cp,ln するなど、
+  application が読める場所においてやって下さい。
+
+Play
+
+  xpuyo
+
+  で起動します。二人でそれぞれ xpuyo を起動して下さい。
+  そして両人ともに「connect」して下さい。
+
+  今のところ、二人による対戦しか support していません。
+  二人がそれぞれの console から xpuyo を起動します。別々の host で動作
+  させる場合には、一方のみが相手の host 名を指定してやって下さい。
+  X 端末等を使って同じ host で動作させるならばその必要はありません。
+  どちらかが server に、もう一方が client に勝手になります。
+  後は二人で puyo puyo して下さい。bound や回転の具合など見てやって下
+  さい。
+
+Omake
+
+  起動時に -single という option をつけると一人遊びができます。ただし
+  これは debug のためにつけたので、お邪魔 puyo は自分自身の上に降ってき
+  ます。あしからず。
+
+Known Bugs
+
+  対戦する相手の host が違う機種である場合、byte order の違いによって
+  動作しないことがあると思います（まだ経験していない）
+	-> binary でデータのやりとりをしているからです。（どうにかします）
+
+  相手の host が「遠い」場合 対戦 game としては game にならない可能性があ
+  ります。
+	-> 遅い回線を使うことを「全然」考慮していない。（どうしよう^^;)
+
+  network 関係の部分が「とっても」汚い。
+	-> 書き直します、hi
+
+  man page がない。
+	-> 気が向いたら書きます。
+
+  source に権利の記述がない。
+	-> 今度ちゃんと入れます。（英語で書けるかな？）
+
+  作者（私のこと）がなかなか bug fix をしようとしない。
+	-> ただの怠慢です。（済みません）
+
+Bug report
+
+  何か気づいた点がありましたら私まで mail して下さい。
+  その際は動作環境などそえて下さい。
+
+Copy rights
+
+  著作権は主張しない予定です。（予定というのはまだ release 前だから）
+  この game は明らかに copy ですので、original との兼ね合いがどうなる
+  かは素人の私にはわかりません。もしその関係で問題が生ずるようであれば、
+  配布は控えたいと思います。
+
+  再配布は（まだ）しないで下さい。ちゃんとした release をするまでは待って下さ
+  い。私がなっとくのいくものができたら、そして配布しても良い(SEG? との
+  兼ね合い)ことがはっきりしたら、きちんとした release を行ないたいと思
+  います。
+
+Special Thanks
+
+  結構可愛く書けている bitmap による絵は zenjy@huie.hokudai.ac.jp に書い
+  てもらいました。その他 test play など協力して下さった皆さんに感謝しま
+  す。
+  そして GCC を作成した GNU project、X window を作った MIT の皆さんに
+  感謝させていただきます。
+
+takahasi@huee.hokudai.ac.jp
+

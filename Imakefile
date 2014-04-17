@@ -1,0 +1,38 @@
+#CC = gcc -Wall -g
+#CC= cc -O
+
+        DEFINES =
+
+        HEADERS = bitmap.h common.h direction.h obstacle-pool.h puyo-bitmap.h \
+		  puyo-board.h puyo-game.h puyo-view.h puyo.h random.h \
+		  roll-puyo.h message.h
+           SRCS = allocation.c direction.c obstacle-pool.c puyo-bitmap.c \
+		  puyo-board.c puyo-game.c puyo-view.c puyo.c random.c \
+		  roll-puyo.c xpuyo.c message.c
+           OBJS = allocation.o direction.o obstacle-pool.o puyo-bitmap.o \
+		  puyo-board.o puyo-game.o puyo-view.o puyo.o random.o \
+		  roll-puyo.o xpuyo.o message.o
+
+LOCAL_LIBRARIES = $(XAWLIB) $(XMULIB) $(XTOOLLIB) $(XLIB) -lm
+        DEPLIBS = $(DEPXAWLIB) $(DEPXMULIB) $(DEPXTOOLLIB) $(DEPXLIB) 
+
+ComplexProgramTarget(xpuyo)
+InstallAppDefaults(Xpuyo)
+
+/* InstallMultipleFlags(ScoreFile,ScoreDir,$(SCOREFLAGS)) */
+
+BITMAPDIR=	./bitmaps/
+BITMAPSUFFIX= 	.xbm
+
+bitmap.h:	bitmap.def make-bitmap.include
+	rm -f $@ $@.tail
+	$(CPP) -E make-bitmap.include					    \
+	    -DBITMAPDIR=\"${BITMAPDIR}\" -DBITMAPSUFFIX=\"${BITMAPSUFFIX}\" \
+	    | sed -n -e 's/[ 	]*#/\
+	#/g' -e 's/"\ *"//g' -e '/#include/p' | sort | uniq >$@.tail
+	echo "/* This file generated from bitmap.def automatically */" \
+	    | cat - $@.tail > $@
+	rm -f $@.tail
+
+realclean:	clean
+	rm -f bitmap.h

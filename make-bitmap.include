@@ -1,0 +1,31 @@
+#ifndef BITMAPDIR
+#define BITMAPDIR	"./"
+#endif
+#ifndef BITMAPSUFFIX
+#define BITMAPSUFFIX
+#endif
+
+#ifdef __STDC__	/* GNU cpp work correctly */
+#define STR(str)	#str
+#define FILE(name)	BITMAPDIR STR(name) BITMAPSUFFIX
+#define INCLUDE(file)	\#include FILE(file)
+#else	/* for sun cpp */
+#define FILE(name)	BITMAPDIR "name" BITMAPSUFFIX
+#define INCLUDE(file)	#include FILE(file)
+#endif
+
+#define NORMAL(body, eye)	INCLUDE(body) INCLUDE(eye)
+#define OBSTACLE(body, eye)	INCLUDE(body) INCLUDE(eye)
+#define SPLASH(body,eye)	INCLUDE(body) INCLUDE(eye)
+#define OPOOL(body, eye)	INCLUDE(body) INCLUDE(eye)
+#define TILE(body)		INCLUDE(body)
+#define OTHER(body)		INCLUDE(body)
+
+#include "bitmap.def"
+
+#undef NORMAL
+#undef OBSTACLE
+#undef SPLASH
+#undef OPOOL
+#undef TILE
+#undef OTHER
